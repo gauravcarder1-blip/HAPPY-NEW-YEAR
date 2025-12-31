@@ -1,0 +1,204 @@
+:root {
+    --bg-dark: #05070d;
+    --bg-mid: #0b1022;
+    --accent: #38f9d7;
+    --accent-soft: rgba(56,249,215,0.35);
+    --text-main: #f1f5f9;
+    --text-muted: #b6c0cc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #0c1430, var(--bg-dark) 65%);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* subtle noise */
+.noise {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    animation: fadeUp 1.3s ease forwards;
+}
+
+.year {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.45rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    color: var(--accent);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    margin-top: 1.4rem;
+    max-width: 620px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* ORBS */
+.orb {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+    filter: blur(70px);
+    animation: float 9s ease-in-out infinite alternate;
+}
+
+.orb-left {
+    top: -120px;
+    left: -120px;
+}
+
+.orb-right {
+    bottom: -140px;
+    right: -140px;
+    animation-delay: 2s;
+}
+
+/* SECTIONS */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 5rem 1.5rem;
+}
+
+.wish h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.wish p {
+    max-width: 850px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+/* CARDS */
+.cards-section {
+    background: linear-gradient(180deg, transparent, var(--bg-mid));
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem;
+}
+
+.card {
+    padding: 2.6rem 2.2rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    border-color: var(--accent-soft);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.65);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #02040a;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 10px rgba(56,249,215,0.4));
+    }
+    to {
+        filter: drop-shadow(0 0 30px rgba(56,249,215,0.8));
+    }
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(60px);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 {
+        letter-spacing: 1px;
+    }
+    .container {
+        padding: 4rem 1.3rem;
+    }
+}
